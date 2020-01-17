@@ -5,6 +5,8 @@ class Identity < ApplicationRecord
   validates :uid, presence: true, uniqueness: { scope: :provider }
 
   def self.first_or_create_from_oauth(auth)
-    where(uid: auth.uid, provider: auth.provider).first_or_create
+    auth_uid = auth.try(:uid) || auth["ID"]
+    auth_provider = auth.try(:provider) || auth["provider"]
+    where(uid: auth_uid, provider: auth_provider).first_or_create
   end
 end

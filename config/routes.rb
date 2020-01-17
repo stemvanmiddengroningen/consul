@@ -49,4 +49,6 @@ Rails.application.routes.draw do
 
   # Static pages
   resources :pages, path: "/", only: [:show]
+
+  get "/oauth/authorize" => redirect("#{Rails.application.config.wordpress_oauth_provider_authorize_endpoint}?client_id=#{Rails.application.secrets.wordpress_oauth_provider_key}&redirect_uri=#{Rails.application.config.wordpress_oauth_redirect_uri}&response_type=code"), as: :wordpress_oauth_authorization
 end
