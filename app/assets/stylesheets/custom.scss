@@ -1,5 +1,147 @@
-// Overrides and adds customized styles in this file
-// Read more on documentation:
-// * English: https://github.com/consul/consul/blob/master/CUSTOMIZE_EN.md#css
-// * Spanish: https://github.com/consul/consul/blob/master/CUSTOMIZE_ES.md#css
+// Custom styles
 //
+// 01. Global styles
+// 02. Header
+// 03. Footer
+// 04. Budgets
+// 05. Legislation
+//
+
+// 01. Global styles
+// - - - - - - - - - - - - - - - - - - - - - - - - -
+
+$green: #00c4a8;
+
+// 02. Header
+// - - - - - - - - - - - - - - - - - - - - - - - - -
+
+header {
+  border-bottom: 0;
+
+  .locale::after {
+    color: #333;
+  }
+}
+
+header,
+.top-bar {
+  background: #fff !important;
+  color: $link;
+
+  .menu > li a {
+    color: $link;
+
+    &:hover {
+      color: $link-hover;
+      text-decoration: underline;
+    }
+  }
+}
+
+.top-bar {
+  margin-top: rem-calc(-12);
+
+  .top-bar-title a {
+
+    @include breakpoint(medium) {
+      position: absolute;
+      top: -5px;
+    }
+
+    img {
+      height: 106px !important;
+      margin: 5px !important;
+      width: 120px;
+    }
+  }
+}
+
+.menu-icon {
+
+  &.dark:hover,
+  &.dark::after {
+    background: $link;
+    box-shadow: 0 7px 0 $link, 0 14px 0 $link;
+  }
+}
+
+.subnavigation {
+  background: $brand;
+
+  @include breakpoint(medium) {
+
+    ul {
+      padding-left: rem-calc(120);
+    }
+  }
+
+  a {
+    color: #fff;
+    padding: 0 rem-calc(6);
+
+    &:hover {
+      background: rgba(0, 0, 0, 0.2);
+      color: #fff;
+      text-decoration: none;
+    }
+
+    &.is-active {
+
+      @include breakpoint(medium) {
+        background: rgba(0, 0, 0, 0.2);
+        border-bottom: 0;
+        color: #fff;
+      }
+    }
+  }
+}
+
+.admin .top-links {
+  background: $green;
+}
+
+.top-links {
+  background: none;
+}
+
+.locale-form {
+
+  label {
+    color: #333;
+  }
+
+  .locale-switcher {
+    background: rgba(0, 0, 0, 0.2);
+    color: #333;
+  }
+}
+
+.help-header {
+  padding-top: $line-height * 2;
+}
+
+// 03. Footer
+// - - - - - - - - - - - - - - - - - - - - - - - - -
+
+.footer {
+  background: #f0f0f0;
+}
+
+// 04. Budgets
+// - - - - - - - - - - - - - - - - - - - - - - - - -
+
+.groups-and-headings .heading {
+  min-height: rem-calc(100);
+  vertical-align: top;
+}
+
+// 05. Legislation
+// - - - - - - - - - - - - - - - - - - - - - - - - -
+
+.draft-panels .comments-on .calc-index .draft-index-rotated {
+
+  @include breakpoint(medium) {
+    margin-top: $line-height * 4;
+  }
+}
+
