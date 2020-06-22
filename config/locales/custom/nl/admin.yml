@@ -1,0 +1,12 @@
+nl:
+  admin:
+    actions:
+      hide: "Verberg"
+      hide_author: "Verberg auteur"
+    shared:
+      debate_search:
+        button: "Zoek"
+        placeholder: "Zoek naar discussies"
+    polls:
+      index:
+        title: "Overzicht van peilingen"
