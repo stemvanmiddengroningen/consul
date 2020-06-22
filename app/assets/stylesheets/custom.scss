@@ -12,6 +12,19 @@
 
 $green: #00c4a8;
 
+.debate-show,
+.proposal-show,
+.poll-question-show,
+.investment-project-show,
+.budget-investment-show,
+.polls-show {
+
+  ul li,
+  ol li {
+    font-size: $base-font-size;
+  }
+}
+
 // 02. Header
 // - - - - - - - - - - - - - - - - - - - - - - - - -
 
