@@ -5,6 +5,7 @@
 // 03. Footer
 // 04. Budgets
 // 05. Legislation
+// 06. Polls
 //
 
 // 01. Global styles
@@ -159,3 +160,20 @@ header,
   }
 }
 
+// 06. Polls
+// - - - - - - - - - - - - - - - - - - - - - - - - -
+
+.poll-more-info-answers .row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.answer {
+
+  .icon-search-plus::before,
+  .icon-search-minus::before {
+    position: absolute;
+    right: 12px;
+    top: 0;
+  }
+}
