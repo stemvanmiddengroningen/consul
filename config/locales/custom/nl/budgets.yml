@@ -1,0 +1,6 @@
+nl:
+  budgets:
+    investments:
+      show:
+        code: "Begrotingsvoorstel code: <strong>%{code}</strong>"
+        organization_name: "Voorgesteld namens: <strong>%{name}</strong>"

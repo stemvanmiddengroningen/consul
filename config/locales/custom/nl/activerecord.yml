@@ -1,0 +1,7 @@
+nl:
+  activerecord:
+    attributes:
+      proposal/translation:
+        title: "Titel"
+        description: "Beschrijving"
+        summary: "Overzicht"

@@ -1,0 +1,35 @@
+nl:
+  layouts:
+    header:
+      budgets: "Burgerbegroting"
+      collaborative_legislation: "Plannen"
+  users:
+    show:
+      proposals_status: "Status"
+      actions: "Acties"
+    proposals:
+      draft: "Concept"
+      published: "Gepubliceerd"
+      actions: "Acties"
+      retired_help_text: "Dashboard niet beschikbaar voor verlopen voorstellen"
+  dashboard:
+    menu:
+      my_proposal: "Wijzig mijn voorstel"
+      progress: "Voortgang"
+      resources: "Bronnen"
+      polls: "Peilingen"
+      poster: "Auteur"
+      recommended_actions: "Aanbevolen acties"
+      messages: "Bericht aan gebruikers"
+      related_content: "Gerelateerde inhoud"
+  debates:
+    show:
+      comments_title: "Commentaren"
+  proposals:
+    show:
+      comments_tab: "Commentaren"
+  polls:
+    show:
+      comments_tab: "Commentaren"
+  form:
+    not_saved_html: "voorkwam dat %{resource} werd opgeslagen.<br>Controleer alsjeblieft de gemarkeerde velden om ze aan te passen:"
