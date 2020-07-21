@@ -32,4 +32,4 @@ nl:
     show:
       comments_tab: "Commentaren"
   form:
-    not_saved_html: "voorkwam dat %{resource} werd opgeslagen.<br>Controleer alsjeblieft de gemarkeerde velden om ze aan te passen:"
+    not_saved: "voorkwam dat %{resource} werd opgeslagen.<br>Controleer alsjeblieft de gemarkeerde velden om ze aan te passen:"

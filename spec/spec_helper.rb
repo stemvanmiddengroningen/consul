@@ -45,7 +45,6 @@ RSpec.configure do |config|
   config.before do |example|
     DatabaseCleaner.strategy = :transaction
     I18n.locale = :en
-    Globalize.locale = nil
     Globalize.set_fallbacks_to_all_available_locales
     load Rails.root.join("db", "seeds.rb").to_s
     Setting["feature.user.skip_verification"] = nil
