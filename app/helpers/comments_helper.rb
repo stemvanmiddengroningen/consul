@@ -40,7 +40,7 @@ module CommentsHelper
   end
 
   def commentable_path(comment)
-    polymorphic_hierarchy_path(comment.commentable)
+    polymorphic_path(comment.commentable)
   end
 
   def user_level_class(comment)
@@ -81,5 +81,17 @@ module CommentsHelper
     else
       t("comments.comments_closed")
     end
+  end
+
+  def is_author?(comment)
+    comment.author_id == current_user.id
+  end
+
+  def all_descendants_hidden?(comment)
+    Comment.descendants_of(comment).for_render.all?(&:hidden?)
+  end
+
+  def comments_without_children_for(commentable)
+    commentable.comments.for_render.map { |comment| dom_id(comment) if all_descendants_hidden?(comment) }
   end
 end

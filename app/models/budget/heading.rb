@@ -35,6 +35,7 @@ class Budget
               format: /\A(-|\+)?([1-8]?\d(?:\.\d{1,})?|90(?:\.0{1,6})?)\z/
     validates :longitude, length: { maximum: 22 }, allow_blank: true, \
               format: /\A(-|\+)?((?:1[0-7]|[1-9])?\d(?:\.\d{1,})?|180(?:\.0{1,})?)\z/
+    validates :max_ballot_lines, numericality: { greater_than_or_equal_to: 1 }
 
     delegate :budget, :budget_id, to: :group, allow_nil: true
 
@@ -57,7 +58,7 @@ class Budget
     private
 
       def generate_slug?
-        slug.nil? || budget.drafting?
+        slug.nil? || budget&.drafting?
       end
   end
 end

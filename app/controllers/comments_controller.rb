@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  before_action :authenticate_user!, only: :create
+  before_action :authenticate_user!, only: [:create, :hide]
   before_action :load_commentable, only: :create
   before_action :verify_resident_for_commentable!, only: :create
   before_action :verify_comments_open!, only: [:create, :vote]
@@ -35,13 +35,19 @@ class CommentsController < ApplicationController
   def flag
     Flag.flag(current_user, @comment)
     set_comment_flags(@comment)
-    respond_with @comment, template: "comments/_refresh_flag_actions"
+
+    render "shared/_refresh_flag_actions", locals: { flaggable: @comment, divider: true }
   end
 
   def unflag
     Flag.unflag(current_user, @comment)
     set_comment_flags(@comment)
-    respond_with @comment, template: "comments/_refresh_flag_actions"
+
+    render "shared/_refresh_flag_actions", locals: { flaggable: @comment, divider: true }
+  end
+
+  def hide
+    @comment.hide
   end
 
   private
@@ -102,7 +108,7 @@ class CommentsController < ApplicationController
       return if current_user.administrator? || current_user.moderator?
 
       if @commentable.respond_to?(:comments_closed?) && @commentable.comments_closed?
-        redirect_to polymorphic_hierarchy_path(@commentable), alert: t("comments.comments_closed")
+        redirect_to polymorphic_path(@commentable), alert: t("comments.comments_closed")
       end
     end
 

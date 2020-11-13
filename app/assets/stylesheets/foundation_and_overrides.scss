@@ -2,6 +2,7 @@
 
 @import "settings";
 @import "consul_settings";
+@import "base_settings";
 @import "custom_settings";
 @import "foundation";
 
@@ -31,7 +32,6 @@
 @include foundation-responsive-embed;
 @include foundation-label;
 @include foundation-media-object;
-@include foundation-off-canvas;
 @include foundation-orbit;
 @include foundation-pagination;
 @include foundation-progress-bar;

@@ -15,7 +15,7 @@ FactoryBot.define do
     description_finished { "This budget is finished" }
 
     trait :drafting do
-      phase { "drafting" }
+      published { false }
     end
 
     trait :informing do
@@ -54,6 +54,14 @@ FactoryBot.define do
       phase { "finished" }
       results_enabled { true }
       stats_enabled { true }
+    end
+
+    trait :knapsack do
+      voting_style { "knapsack" }
+    end
+
+    trait :approval do
+      voting_style { "approval" }
     end
   end
 
@@ -96,7 +104,6 @@ FactoryBot.define do
     description          { "Spend money on this" }
     price                { 10 }
     unfeasibility_explanation { "" }
-    skip_map             { "1" }
     terms_of_service     { "1" }
     incompatible         { false }
 

@@ -9,13 +9,13 @@
       });
     },
     submitOnChange: function() {
-      $(".js-submit-on-change").off("change").on("change", function() {
+      $("body").on("change", ".js-submit-on-change", function() {
         $(this).closest("form").submit();
         return false;
       });
     },
     toggleLink: function() {
-      $(".js-toggle-link").off("click").on("click", function() {
+      $("body").on("click", ".js-toggle-link", function() {
         var toggle_txt;
         $($(this).data("toggle-selector")).toggle("down");
         if ($(this).data("toggle-text") !== undefined) {
@@ -56,12 +56,24 @@
       });
       $("[name='progress_bar[kind]']").trigger("change");
     },
+    toggleBudgetPhaseEnable: function() {
+      var checkbox = $(".js-toggle-budget-phase-enable");
+      $(checkbox).on({
+        change: function(e) {
+          $.ajax({
+            url: $(e.target).data("js-url"),
+            type: "PATCH"
+          });
+        }
+      });
+    },
     initialize: function() {
       App.Forms.disableEnter();
       App.Forms.submitOnChange();
       App.Forms.toggleLink();
       App.Forms.synchronizeInputs();
       App.Forms.hideOrShowFieldsAfterSelection();
+      App.Forms.toggleBudgetPhaseEnable();
     }
   };
 }).call(this);

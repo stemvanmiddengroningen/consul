@@ -9,9 +9,7 @@
 //
 
 // 01. Global styles
-// - - - - - - - - - - - - - - - - - - - - - - - - -
-
-$green: #00c4a8;
+// -----------------
 
 .debate-show,
 .proposal-show,
@@ -27,7 +25,7 @@ $green: #00c4a8;
 }
 
 // 02. Header
-// - - - - - - - - - - - - - - - - - - - - - - - - -
+// ----------
 
 header {
   border-bottom: 0;
@@ -52,21 +50,19 @@ header,
   }
 }
 
-.top-bar {
-  margin-top: rem-calc(-12);
+.top-bar-title {
+  padding-bottom: 0;
+  padding-top: 0;
 
-  .top-bar-title a {
-
-    @include breakpoint(medium) {
-      position: absolute;
-      top: -5px;
-    }
-
-    img {
-      height: 106px !important;
-      margin: 5px !important;
-      width: 120px;
-    }
+  &::before {
+    background: $green;
+    content: "";
+    height: 100%;
+    left: -999%;
+    position: absolute;
+    top: 0;
+    width: 999%;
+    z-index: 0;
   }
 }
 
@@ -82,29 +78,25 @@ header,
 .subnavigation {
   background: $brand;
 
-  @include breakpoint(medium) {
-
-    ul {
-      padding-left: rem-calc(120);
-    }
+  ul {
+    height: $line-height * 2;
   }
 
   a {
     color: #fff;
-    padding: 0 rem-calc(6);
 
     &:hover {
-      background: rgba(0, 0, 0, 0.2);
       color: #fff;
-      text-decoration: none;
     }
 
     &.is-active {
 
       @include breakpoint(medium) {
-        background: rgba(0, 0, 0, 0.2);
-        border-bottom: 0;
         color: #fff;
+      }
+
+      &::after {
+        background: $dark;
       }
     }
   }
@@ -136,14 +128,37 @@ header,
 }
 
 // 03. Footer
-// - - - - - - - - - - - - - - - - - - - - - - - - -
+// ----------
 
 .footer {
   background: #f0f0f0;
+
+  .social a {
+    color: $brand;
+  }
+}
+
+footer {
+  color: $text;
+
+  a,
+  a:active,
+  a:focus {
+    color: $text;
+    text-decoration: none;
+
+    &:hover {
+      color: $text;
+    }
+  }
+}
+
+.subfooter {
+  font-size: $small-font-size;
 }
 
 // 04. Budgets
-// - - - - - - - - - - - - - - - - - - - - - - - - -
+// -----------
 
 .groups-and-headings .heading {
   min-height: rem-calc(100);
@@ -151,7 +166,7 @@ header,
 }
 
 // 05. Legislation
-// - - - - - - - - - - - - - - - - - - - - - - - - -
+// ---------------
 
 .draft-panels .comments-on .calc-index .draft-index-rotated {
 
@@ -161,7 +176,7 @@ header,
 }
 
 // 06. Polls
-// - - - - - - - - - - - - - - - - - - - - - - - - -
+// ---------
 
 .poll-more-info-answers .row {
   display: flex;
