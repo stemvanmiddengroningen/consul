@@ -54,6 +54,12 @@ header,
   padding-bottom: 0;
   padding-top: 0;
 
+  @include breakpoint(medium) {
+    &::before {
+      z-index: 0;
+    }
+  }
+
   &::before {
     background: $green;
     content: "";
@@ -62,7 +68,6 @@ header,
     position: absolute;
     top: 0;
     width: 999%;
-    z-index: 0;
   }
 }
 
@@ -78,10 +83,6 @@ header,
 .subnavigation {
   background: $brand;
 
-  ul {
-    height: $line-height * 2;
-  }
-
   a {
     color: #fff;
 
@@ -90,10 +91,7 @@ header,
     }
 
     &.is-active {
-
-      @include breakpoint(medium) {
-        color: #fff;
-      }
+      color: #fff;
 
       &::after {
         background: $dark;
@@ -109,6 +107,7 @@ header,
 
 .top-links {
   background: none;
+  height: 0;
 }
 
 .locale-form {
