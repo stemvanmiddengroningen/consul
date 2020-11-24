@@ -107,16 +107,16 @@ class ApplicationController < ActionController::Base
     end
 
     def set_return_url
-      if !devise_controller? && controller_name != "welcome" && is_navigational_format?
-        store_location_for(:user, request.path)
+      if request.get? && !devise_controller? && is_navigational_format?
+        store_location_for(:user, request.fullpath)
       end
     end
 
     def set_default_budget_filter
-      if @budget&.balloting? || @budget&.publishing_prices?
-        params[:filter] ||= "selected"
-      elsif @budget&.finished?
+      if @budget&.finished?
         params[:filter] ||= "winners"
+      elsif @budget&.publishing_prices_or_later?
+        params[:filter] ||= "selected"
       end
     end
 

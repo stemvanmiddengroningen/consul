@@ -101,6 +101,19 @@ a {
   &.medium {
     font-size: $small-font-size;
   }
+
+  &.add {
+    font-weight: bold;
+    padding-left: $line-height * 1.5;
+    position: relative;
+
+    &::before {
+      content: "\f0fe";
+      font-family: "Font Awesome 5 Free";
+      left: 10px;
+      position: absolute;
+    }
+  }
 }
 
 .button.hollow {
@@ -204,6 +217,30 @@ a {
 
 .light {
   background: $light;
+
+  &.expand {
+    background: $light;
+    clear: both;
+    position: relative;
+
+    &::before,
+    &::after {
+      background: $light;
+      content: "";
+      height: 100%;
+      position: absolute;
+      top: 0;
+      width: 100%;
+    }
+
+    &::before {
+      right: 100%;
+    }
+
+    &::after {
+      left: 100%;
+    }
+  }
 }
 
 .highlight {
@@ -219,6 +256,7 @@ a {
   margin: 0 auto (-$line-height) * 12;
   height: auto !important;
   height: 100%;
+  overflow: hidden;
 }
 
 .footer,
@@ -402,7 +440,7 @@ a {
   }
 }
 
-.button.float-right ~ .button.float-right {
+.button.float-right + .button.float-right {
   margin: 0 $line-height / 2;
 }
 
@@ -436,10 +474,6 @@ a {
   display: table-cell;
 }
 
-.off-canvas-content {
-  box-shadow: none;
-}
-
 .uppercase {
   text-transform: uppercase;
 }
@@ -447,6 +481,95 @@ a {
 .help-text {
   line-height: rem-calc(20);
   margin-top: 0;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.link-to-top {
+  background: rgba(226, 226, 226, 0.5);
+  border-radius: rem-calc(6);
+  bottom: 12px;
+  display: table;
+  height: rem-calc(48);
+  position: fixed;
+  right: 24px;
+  width: rem-calc(48);
+
+  a {
+    color: $text;
+    display: table-cell;
+    font-size: rem-calc(24);
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    width: 100%;
+  }
+}
+
+.menu-and-content {
+  $side-menu-min-width: rem-calc(240);
+
+  @include breakpoint(medium) {
+    display: flex;
+
+    > nav {
+      flex: 20%;
+      min-width: $side-menu-min-width;
+
+      + * {
+        flex: 80%;
+        padding: $line-height;
+      }
+    }
+
+    [for="show_menu"] {
+      display: none;
+    }
+  }
+
+  @include breakpoint(small only) {
+    > nav {
+      height: 100%;
+      left: -$side-menu-min-width;
+      overflow-y: auto;
+      position: fixed;
+      top: 0;
+      transition: left 0.5s ease;
+      width: $side-menu-min-width;
+      z-index: 12;
+
+      + * {
+        padding: $line-height;
+      }
+    }
+
+    [name="show_menu"]:checked + nav,
+    > nav:focus-within {
+      left: 0;
+
+      + * {
+        overflow-x: hidden;
+
+        [for="show_menu"]::after {
+          @include reveal-overlay;
+          content: "";
+          cursor: pointer;
+          display: block;
+          z-index: 11;
+        }
+      }
+    }
+  }
+
+  [name="show_menu"] {
+    display: none;
+  }
+}
+
+.bold {
+  font-weight: bold;
 }
 
 // 02. Header
@@ -788,6 +911,17 @@ header {
     font-weight: bold;
     text-decoration: underline;
   }
+
+  .avatar {
+    margin-right: $line-height * 1.5;
+    position: relative;
+
+    .avatar-image {
+      position: absolute;
+      right: -48px;
+      top: -10px;
+    }
+  }
 }
 
 .submenu {
@@ -1044,6 +1178,7 @@ footer {
 form {
 
   label {
+    color: $label;
     font-size: $base-font-size;
     font-weight: bold;
     line-height: $line-height;
@@ -1051,6 +1186,19 @@ form {
 
   fieldset legend {
     font-weight: bold;
+  }
+
+  select {
+    border: 2px solid #d2d7dc;
+    border-radius: rem-calc(4);
+
+    &:not(.locale-switcher) {
+      min-height: $line-height * 2;
+    }
+
+    &:focus {
+      border: 2px solid #d2d7dc;
+    }
   }
 
   [type="radio"] {
@@ -1067,12 +1215,23 @@ form {
   }
 
   [type]:not([type=submit]):not([type=file]):not([type=checkbox]):not([type=radio]):not(.close-button) {
-    background: #f8f8f8;
+    background: #fff;
+    border: 2px solid #d2d7dc;
+    border-radius: rem-calc(4);
+    box-shadow: none;
     height: $line-height * 2;
-    margin-bottom: rem-calc(16);
+    margin-bottom: $line-height * 1.5;
+
+    ~ .form-section-divider {
+      margin-bottom: $line-height / 2;
+    }
 
     &.error {
       margin-bottom: rem-calc(1);
+    }
+
+    &:disabled {
+      background-color: $input-background-disabled;
     }
   }
 
@@ -1100,10 +1259,20 @@ form {
 
   .checkbox,
   .radio {
-    display: inline-block;
+    color: $text;
     font-weight: normal;
     line-height: $line-height;
     vertical-align: middle;
+  }
+
+  .required {
+
+    label {
+
+      &::after {
+        content: "*";
+      }
+    }
   }
 }
 
@@ -1118,6 +1287,52 @@ form {
 
 .translation-locale {
   padding-top: $line-height;
+}
+
+.form-label {
+  color: $label;
+  font-weight: bold;
+}
+
+.subtitle-form {
+  color: #000;
+  font-size: rem-calc(36);
+  font-weight: bold;
+  margin-bottom: $line-height * 2;
+  padding-top: $line-height * 3;
+  text-transform: uppercase;
+}
+
+.submit-form-container {
+  position: relative;
+
+  &::before,
+  &::after {
+    background: $light;
+    content: "";
+    height: 100%;
+    position: absolute;
+    top: 48px;
+    width: 150%;
+    z-index: -1;
+  }
+
+  &::before {
+    left: -100%;
+  }
+
+  &::after {
+    right: -100%;
+  }
+}
+
+.submit-form-box {
+  background: #fff;
+  border: 6px solid $border;
+  border-radius: rem-calc(12);
+  margin-top: $line-height * 2;
+  padding: $line-height * 2 $line-height;
+  text-align: center;
 }
 
 // 07. Callout
@@ -1548,6 +1763,16 @@ table {
   line-height: $line-height * 2;
   padding: 0;
   position: relative;
+
+  &::before {
+    font-family: "icons" !important;
+    font-size: rem-calc(24);
+    left: 0;
+    line-height: $line-height * 2;
+    padding: 0 rem-calc(20);
+    position: absolute;
+    top: 0;
+  }
 }
 
 .button.button-twitter {
@@ -1557,13 +1782,6 @@ table {
   &::before {
     color: #45b0e3;
     content: "f";
-    font-family: "icons" !important;
-    font-size: rem-calc(24);
-    left: 0;
-    line-height: $line-height * 2;
-    padding: 0 rem-calc(20);
-    position: absolute;
-    top: 0;
   }
 }
 
@@ -1600,13 +1818,6 @@ table {
   &::before {
     color: #3b5998;
     content: "A";
-    font-family: "icons" !important;
-    font-size: rem-calc(24);
-    left: 0;
-    line-height: $line-height * 2;
-    padding: 0 rem-calc(20);
-    position: absolute;
-    top: 0;
   }
 }
 
@@ -1643,39 +1854,6 @@ table {
   &::before {
     color: #de4c34;
     content: "B";
-    font-family: "icons" !important;
-    font-size: rem-calc(24);
-    left: 0;
-    line-height: $line-height * 2;
-    padding: 0 rem-calc(20);
-    position: absolute;
-    top: 0;
-  }
-}
-
-[class^="ssb-icon ssb-google"] {
-  background: #de4c34;
-  background-image: none !important;
-  color: #fff;
-  height: $line-height * 2 !important;
-  position: relative;
-  width: $line-height * 2 !important;
-
-  &::before {
-    content: "B";
-    font-family: "icons" !important;
-    font-size: rem-calc(24);
-    left: 50%;
-    line-height: $line-height * 2;
-    margin-left: rem-calc(-11);
-    position: absolute;
-    top: 0;
-  }
-
-  &:hover,
-  &:focus {
-    background: #fff;
-    color: #ce3e26;
   }
 }
 
@@ -1686,13 +1864,6 @@ table {
   &::before {
     color: #2f2f33;
     content: "J";
-    font-family: "icons" !important;
-    font-size: rem-calc(24);
-    left: 0;
-    line-height: $line-height * 2;
-    padding: 0 rem-calc(20);
-    position: absolute;
-    top: 0;
   }
 }
 
@@ -1703,13 +1874,6 @@ table {
   &::before {
     color: #08c;
     content: "1";
-    font-family: "icons" !important;
-    font-size: rem-calc(24);
-    left: 0;
-    line-height: $line-height * 2;
-    padding: 0 rem-calc(20);
-    position: absolute;
-    top: 0;
   }
 }
 
@@ -1814,31 +1978,6 @@ table {
     &:focus {
       background: #fff;
       color: #354f88;
-    }
-  }
-
-  [class^="ssb-icon ssb-google"] {
-    background: #de4c34;
-    color: #fff;
-    height: rem-calc(24);
-    position: relative;
-    width: rem-calc(48);
-
-    &::before {
-      content: "B";
-      font-family: "icons" !important;
-      font-size: rem-calc(24);
-      left: 50%;
-      line-height: $line-height * 2;
-      margin-left: rem-calc(-11);
-      position: absolute;
-      top: 0;
-    }
-
-    &:hover,
-    &:focus {
-      background: #fff;
-      color: #ce3e26;
     }
   }
 
@@ -2084,6 +2223,7 @@ table {
   }
 
   .comment {
+    line-height: $list-lineheight;
     margin: $line-height / 4 0;
     position: relative;
 
@@ -2116,19 +2256,6 @@ table {
     padding: $line-height / 4;
     position: relative;
 
-    .relative,
-    [class^="icon-arrow"] {
-      padding-left: $line-height / 2;
-    }
-
-    [class^="icon-arrow"] {
-      font-size: $base-font-size;
-      left: -20px;
-      position: absolute;
-      text-decoration: none;
-      top: -1px;
-    }
-
     .divider {
       color: $text-light;
       display: inline-block;
@@ -2136,6 +2263,34 @@ table {
 
     form {
       margin-top: $line-height / 2;
+    }
+  }
+
+  .responses-count {
+    .show-children {
+      @include has-fa-icon(plus-square, r);
+      display: none;
+    }
+
+    .collapse-children {
+      @include has-fa-icon(minus-square, r);
+    }
+
+    .show-children::before,
+    .collapse-children::before {
+      margin-right: rem-calc(6);
+      transform: translateY(1px);
+    }
+
+    &.collapsed {
+
+      .collapse-children {
+        display: none;
+      }
+
+      .show-children {
+        display: inline;
+      }
     }
   }
 
@@ -2172,12 +2327,24 @@ table {
   }
 }
 
-.comment-children {
-  border-left: 1px dashed $border;
-  display: inline-block;
-  margin-left: rem-calc(16);
-  padding-left: rem-calc(8);
-  width: 100%;
+.comment-list {
+  margin: $line-height / 4 0;
+
+  .comment-list {
+    border-left: 1px dashed $border;
+    display: inline-block;
+    padding-left: rem-calc(8);
+    width: 100%;
+
+  }
+
+  .comment-form {
+    display: none;
+  }
+
+  &:empty {
+    display: none;
+  }
 }
 
 .comment-info {
@@ -2330,6 +2497,22 @@ table {
 // 18. Banners
 // -----------
 
+.banner {
+
+  a > * {
+    @include grid-row;
+    padding: 0 rem-calc(16);
+
+    &:empty {
+      display: none;
+    }
+  }
+
+  + .budget.expanded,
+  + .jumbo {
+    margin-top: 0;
+  }
+}
 
 // 19. Recommendations
 // -------------------
@@ -2711,8 +2894,34 @@ table {
 // 22. Images
 // -----------------
 
-.images .button {
-  margin-top: $line-height / 2;
+.button {
+
+  &.direct-upload-button {
+    font-weight: bold;
+    margin-bottom: $line-height * 1.5;
+    padding-left: $line-height * 1.5;
+    position: relative;
+
+    &.upload-image {
+
+      &::before {
+        content: "\f03e";
+        font-family: "Font Awesome 5 Free";
+        left: 10px;
+        position: absolute;
+      }
+    }
+
+    &.upload-document {
+
+      &::before {
+        content: "\f15b";
+        font-family: "Font Awesome 5 Free";
+        left: 10px;
+        position: absolute;
+      }
+    }
+  }
 }
 
 // 23. Maps
@@ -2788,11 +2997,18 @@ table {
     margin-top: rem-calc(-48);
   }
 
+  .cards-container {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
   .card {
     border: 0;
+    flex-grow: 0;
     overflow: visible;
 
     a {
+      height: 100%;
 
       img {
         transition-duration: 0.3s;

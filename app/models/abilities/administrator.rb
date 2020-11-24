@@ -59,7 +59,7 @@ module Abilities
 
       can :manage, Dashboard::Action
 
-      can [:index, :read, :new, :create, :update, :destroy, :calculate_winners], Budget
+      can [:index, :read, :new, :create, :update, :publish, :destroy, :calculate_winners, :switch_group], Budget
       can [:read, :create, :update, :destroy], Budget::Group
       can [:read, :create, :update, :destroy], Budget::Heading
       can [:hide, :admin_update, :toggle_selection], Budget::Investment
@@ -90,7 +90,9 @@ module Abilities
       can :access, :ckeditor
       can :manage, Ckeditor::Picture
 
-      can [:manage], ::Legislation::Process
+      can [:read, :debate, :draft_publication, :allegations, :result_publication,
+           :milestones], Legislation::Process
+      can [:create, :update, :destroy], Legislation::Process
       can [:manage], ::Legislation::DraftVersion
       can [:manage], ::Legislation::Question
       can [:manage], ::Legislation::Proposal

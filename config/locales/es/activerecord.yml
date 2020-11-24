@@ -141,8 +141,13 @@ es:
         description_balloting: "Descripción durante la fase de votación"
         description_reviewing_ballots: "Descripción durante la fase de revisión de votos"
         description_finished: "Descripción cuando el presupuesto ha finalizado / Resultados"
-        phase: "Fase"
+        phase: "Fase activa"
         currency_symbol: "Divisa"
+        voting_style: "Estilo de la votación final"
+        voting_style_knapsack: "Bolsa de dinero"
+        voting_style_approval: "Por aprobación"
+        main_button_text: "Texto del botón"
+        main_button_url: "El botón te lleva a (añade un enlace)"
       budget/translation:
         name: "Nombre"
       budget/investment:
@@ -195,7 +200,7 @@ es:
         primary: "Principal"
         secondary: "Secundaria"
       budget/group:
-        max_votable_headings: "Máximo número de partidas en que un usuario puede votar"
+        max_votable_headings: "Máximo número de partidas en que un usuario puede seleccionar proyectos"
       budget/group/translation:
         name: "Nombre del grupo"
       budget/heading:
@@ -203,15 +208,19 @@ es:
         latitude: "Latitud (opcional)"
         longitude: "Longitud (opcional)"
         name: "Nombre de la partida"
-        price: "Cantidad"
+        price: "Cantidad de dinero"
         population: "Población (opcional)"
+        max_ballot_lines: "Votos permitidos"
       budget/heading/translation:
         name: "Nombre de la partida"
       budget/phase:
         enabled: "Fase habilitada"
         ends_at: "Fecha de fin"
         starts_at: "Fecha de inicio"
+        main_button_text: "Texto del botón"
+        main_button_url: "El botón te lleva a (añade un enlace)"
       budget/phase/translation:
+        name: "Nombre"
         description: "Descripción"
         summary: "Resumen"
       comment:
@@ -302,6 +311,7 @@ es:
         body: "Mensaje"
         title: "Título"
       signature_sheet:
+        title: "Título"
         signable_type: "Tipo de hoja de firmas"
         signable_id: "ID Propuesta ciudadana/Proyecto de gasto"
         document_numbers: "Números de documentos"
@@ -497,10 +507,6 @@ es:
           attributes:
             segment_recipient:
               invalid: "El usuario del destinatario es inválido"
-        map_location:
-          attributes:
-            map:
-              invalid: El mapa no puede estar en blanco. Añade un punto al mapa o marca la casilla si no hace falta un mapa.
         poll/voter:
           attributes:
             document_number:
