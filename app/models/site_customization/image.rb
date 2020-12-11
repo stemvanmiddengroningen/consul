@@ -11,6 +11,7 @@ class SiteCustomization::Image < ApplicationRecord
     "welcome/step_1" => [270, 240],
     "welcome/step_2" => [270, 240],
     "welcome/step_3" => [270, 240],
+    "bg_footer" => [1200, 300],
     "auth_bg" => [934, 1398]
   }.freeze
 
