@@ -43,7 +43,7 @@ describe "Welcome screen" do
     login_as(user)
 
     visit welcome_path
-    expect(page).to have_current_path(page_path("welcome_level_three_verified"))
+    expect(page).to have_current_path(root_path)
   end
 
   scenario "a regular user does not see it when coing to /email" do
