@@ -77,6 +77,8 @@ nl:
         feasibility_feasible: "Haalbaar"
         feasibility_undecided: "Nog te beoordelen"
         feasibility_unfeasible: "Onhaalbaar"
+        feasibility_explanation: "Feasibility explanation (optioneel)"
+        unfeasibility_explanation: "Unfeasibility explanation"
       budget/investment/translation:
         title: "Titel van het idee"
         description: "Omschrijving"
