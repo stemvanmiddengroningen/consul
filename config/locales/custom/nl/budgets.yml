@@ -184,7 +184,7 @@ nl:
         change_ballot: "Als je je bedenkt kun je je stemmen in %{check_ballot} verwijderen en opnieuw beginnen."
         different_heading_assigned: "Je hebt al gestemd in een andere groep: %{heading_link}"
       share:
-        message: "Dit is een goed idee voor de Oosterparkwijk! Vanaf 18 november kan je stemmen op dit idee"
+        message: "Ik heb een voorstel voor %{title} gemaakt in de gemeente Midden-Groningen. Bekijk en like mijn idee. Je kunt hierop stemmen vanaf 10 mei."
     show:
       see_all_investments: "Bekijk alle ideeën"
       investments_list: "Ideeën"
