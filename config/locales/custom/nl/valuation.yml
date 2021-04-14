@@ -1,0 +1,8 @@
+nl:
+  valuation:
+    budget_investments:
+      show:
+        feasible: "Haalbaar"
+        unfeasible: "Onhaalbaar"
+        undefined: "Nog niet gedefinieerd"
+        undecided: "Nog te beoordelen"
