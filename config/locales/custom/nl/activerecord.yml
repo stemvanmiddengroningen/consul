@@ -73,6 +73,9 @@ nl:
       budget/investment:
         location: "Hier kun je meer vertellen over de locatie"
         organization_name: "Als je een voorstel doet uit naam van een stichting, coöperatie of organisatie, voer dan hier de naam in"
+        feasibility_feasible: "Haalbaar"
+        feasibility_undecided: "Nog te beoordelen"
+        feasibility_unfeasible: "Onhaalbaar"
       budget/investment/translation:
         title: "Titel van het idee"
         description: "Omschrijving"

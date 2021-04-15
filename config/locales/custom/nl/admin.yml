@@ -114,6 +114,9 @@ nl:
           all: "Alle"
           open: "Actief"
           finished: "Afgesloten"
+          feasible: "Haalbaar"
+          undecided: "Nog te beoordelen"
+          unfeasible: "Onhaalbaar"
         delete: "Verwijderen"
         help_block: "Dankzij begrotingen kunnen de burgers rechtstreeks voorstellen doen en beslissen hoe zij een deel van de begroting willen besteden, waarbij de gemeente toezicht houdt op de voorstellen en deze streng evalueert."
         type_single: "Enkele rubriek"
@@ -211,6 +214,14 @@ nl:
           help_block: "Rubrieken verdelen het geld van de burgerbegroting. Dit budget heeft slechts één rubriek . Daarom is vooraf al bepaalt waar het geld in deze begroting aan wordt uitgegeven."
         multiple:
           help_block: "Rubrieken verdelen het geld van de burgerbegroting. Hier kun je rubrieken voor de groep  toevoegen en het te besteden bedrag voor elke rubriek toewijzen."
+    budget_investments:
+      index:
+        feasibility:
+          feasible: "Haalbaar"
+          unfeasible: "Onhaalbaar"
+          undecided: "Nog te beoordelen"
+      show:
+        undefined: "Nog niet gedefinieerd"
     polls:
       index:
         title: "Overzicht van peilingen"
