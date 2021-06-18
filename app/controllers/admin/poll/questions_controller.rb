@@ -7,8 +7,6 @@ class Admin::Poll::QuestionsController < Admin::Poll::BaseController
 
   def index
     @polls = Poll.not_budget
-    @search = search_params[:search]
-
     @questions = @questions.search(search_params).page(params[:page]).order("created_at DESC")
 
     @proposals = Proposal.successful.sort_by_confidence_score
@@ -46,11 +44,11 @@ class Admin::Poll::QuestionsController < Admin::Poll::BaseController
 
   def destroy
     if @question.destroy
-      notice = "Question destroyed succesfully"
+      notice = t("admin.questions.flash.destroy")
     else
       notice = t("flash.actions.destroy.error")
     end
-    redirect_to admin_questions_path, notice: notice
+    redirect_to admin_poll_path(@question.poll), notice: notice
   end
 
   private
