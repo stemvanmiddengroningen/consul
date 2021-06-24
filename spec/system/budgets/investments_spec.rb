@@ -979,28 +979,6 @@ describe "Budget Investments" do
     user = create(:user)
     login_as(user)
 
-    visit budget_investment_path(budget, investment)
-
-    expect(page).not_to have_content("Feasibility explanation")
-    expect(page).not_to have_content("Local government is competent in this")
-
-    visit budget_investment_path(budget, investment_2)
-
-    expect(page).to have_content("Feasibility explanation")
-    expect(page).to have_content("The feasible explanation")
-  end
-
-  scenario "Show (selected budget investment)" do
-    investment = create(:budget_investment,
-                        :feasible,
-                        :finished,
-                        :selected,
-                        budget: budget,
-                        heading: heading)
-
-    user = create(:user)
-    login_as(user)
-
     visit budget_investment_path(budget, id: investment.id)
 
     expect(page).to have_content("This investment project has been selected for balloting phase")

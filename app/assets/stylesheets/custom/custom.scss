@@ -35,7 +35,11 @@ header {
   }
 }
 
-header,
+.wrapper > header {
+  background: #fff !important;
+  color: $link;
+}
+
 .top-bar {
   background: #fff !important;
   color: $link;
@@ -48,9 +52,14 @@ header,
       text-decoration: underline;
     }
   }
+
+  .subnavigation .dropdown.menu li a {
+    color: #fff;
+  }
 }
 
 .top-bar-title {
+  background: $green;
   padding-bottom: 0;
   padding-top: 0;
 
@@ -69,6 +78,25 @@ header,
     top: 0;
     width: 999%;
   }
+
+  a {
+    height: rem-calc(80);
+
+    @include breakpoint(medium) {
+      display: block;
+      min-height: rem-calc(210);
+      margin-top: rem-calc(3);
+      margin-left: rem-calc(3);
+    }
+
+    img {
+      max-height: rem-calc(80);
+
+      @include breakpoint(medium) {
+        max-height: none;
+      }
+    }
+  }
 }
 
 .menu-icon {
@@ -82,6 +110,10 @@ header,
 
 .subnavigation {
   background: $brand;
+
+  .dropdown.menu > li.is-active > a  {
+    color: #fff;
+  }
 
   a {
     color: #fff;
@@ -124,6 +156,14 @@ header,
 
 .help-header {
   padding-top: $line-height * 2;
+}
+
+.subnavigation .dropdown.menu > li.is-dropdown-submenu-parent > a::before {
+  border-color: #fff transparent transparent;
+}
+
+.dropdown.menu li.is-submenu-item a {
+  color: $brand;
 }
 
 // 03. Footer
