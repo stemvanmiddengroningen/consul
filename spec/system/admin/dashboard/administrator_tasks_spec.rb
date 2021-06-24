@@ -1,12 +1,6 @@
 require "rails_helper"
 
-describe "Admin administrator tasks" do
-  let(:admin) { create :administrator }
-
-  before do
-    login_as(admin.user)
-  end
-
+describe "Admin administrator tasks", :admin do
   context "when visiting index" do
     context "and no pending tasks" do
       before do
@@ -32,6 +26,15 @@ describe "Admin administrator tasks" do
 
       scenario "has a link that allows solving the request" do
         expect(page).to have_link("Solve")
+      end
+
+      scenario "shows a message if proposal has been deleted" do
+        proposal = task.source.proposal
+        proposal.update!(hidden_at: Time.current)
+
+        visit admin_dashboard_administrator_tasks_path
+
+        expect(page).to have_content("This proposal has been deleted")
       end
     end
   end
