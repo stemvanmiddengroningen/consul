@@ -1,0 +1,233 @@
+// Custom styles
+//
+// 01. Global styles
+// 02. Header
+// 03. Footer
+// 04. Budgets
+// 05. Legislation
+// 06. Polls
+//
+
+// 01. Global styles
+// -----------------
+
+.debate-show,
+.proposal-show,
+.poll-question-show,
+.investment-project-show,
+.budget-investment-show,
+.polls-show {
+
+  ul li,
+  ol li {
+    font-size: $base-font-size;
+  }
+}
+
+// 02. Header
+// ----------
+
+header {
+  border-bottom: 0;
+
+  .locale::after {
+    color: #333;
+  }
+}
+
+.wrapper > header {
+  background: #fff !important;
+  color: $link;
+}
+
+.top-bar {
+  background: #fff !important;
+  color: $link;
+
+  .menu > li a {
+    color: $link;
+
+    &:hover {
+      color: $link-hover;
+      text-decoration: underline;
+    }
+  }
+
+  .subnavigation .dropdown.menu li a {
+    color: #fff;
+  }
+}
+
+.top-bar-title {
+  background: $green;
+  padding-bottom: 0;
+  padding-top: 0;
+
+  @include breakpoint(medium) {
+    &::before {
+      z-index: 0;
+    }
+  }
+
+  &::before {
+    background: $green;
+    content: "";
+    height: 100%;
+    left: -999%;
+    position: absolute;
+    top: 0;
+    width: 999%;
+  }
+
+  a {
+    height: rem-calc(80);
+
+    @include breakpoint(medium) {
+      display: block;
+      min-height: rem-calc(210);
+      margin-top: rem-calc(3);
+      margin-left: rem-calc(3);
+    }
+
+    img {
+      max-height: rem-calc(80);
+
+      @include breakpoint(medium) {
+        max-height: none;
+      }
+    }
+  }
+}
+
+.menu-icon {
+
+  &.dark:hover,
+  &.dark::after {
+    background: $link;
+    box-shadow: 0 7px 0 $link, 0 14px 0 $link;
+  }
+}
+
+.subnavigation {
+  background: $brand;
+
+  .dropdown.menu > li.is-active > a  {
+    color: #fff;
+  }
+
+  a {
+    color: #fff;
+
+    &:hover {
+      color: #fff;
+    }
+
+    &.is-active {
+      color: #fff;
+
+      &::after {
+        background: $dark;
+      }
+    }
+  }
+}
+
+.admin .top-links {
+  background: $green;
+  height: $line-height * 2;
+}
+
+.top-links {
+  background: none;
+  height: 0;
+}
+
+.locale-form {
+
+  label {
+    color: #333;
+  }
+
+  .locale-switcher {
+    background: rgba(0, 0, 0, 0.2);
+    color: #333;
+  }
+}
+
+.help-header {
+  padding-top: $line-height * 2;
+}
+
+.subnavigation .dropdown.menu > li.is-dropdown-submenu-parent > a::before {
+  border-color: #fff transparent transparent;
+}
+
+.dropdown.menu li.is-submenu-item a {
+  color: $brand;
+}
+
+// 03. Footer
+// ----------
+
+.footer {
+  background: #f0f0f0;
+
+  .social a {
+    color: $brand;
+  }
+}
+
+footer {
+  color: $text;
+
+  a,
+  a:active,
+  a:focus {
+    color: $text;
+    text-decoration: none;
+
+    &:hover {
+      color: $text;
+    }
+  }
+}
+
+.subfooter {
+  font-size: $small-font-size;
+}
+
+// 04. Budgets
+// -----------
+
+.groups-and-headings .heading {
+  min-height: rem-calc(100);
+  vertical-align: top;
+}
+
+// 05. Legislation
+// ---------------
+
+.draft-panels .comments-on .calc-index .draft-index-rotated {
+
+  @include breakpoint(medium) {
+    margin-top: $line-height * 4;
+  }
+}
+
+// 06. Polls
+// ---------
+
+.poll-more-info-answers .row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.answer {
+
+  .icon-search-plus::before,
+  .icon-search-minus::before {
+    position: absolute;
+    right: 12px;
+    top: 0;
+  }
+}
