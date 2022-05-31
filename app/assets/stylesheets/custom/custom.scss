@@ -36,7 +36,6 @@ header {
 }
 
 .wrapper > header {
-  background: #fff !important;
   color: $link;
 }
 
@@ -71,12 +70,16 @@ header {
 
   &::before {
     background: $green;
-    content: "";
+    content: none;
     height: 100%;
     left: -999%;
     position: absolute;
     top: 0;
     width: 999%;
+
+    @include breakpoint(medium) {
+      content: "";
+    }
   }
 
   a {
