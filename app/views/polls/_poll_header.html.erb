@@ -1,6 +1,6 @@
 <div class="expanded no-margin-top polls-show-header">
   <div class="row">
-    <div class="small-12 medium-9 column padding">
+    <div class="small-12 medium-8 column padding">
       <% if @poll.related.nil? %>
         <%= back_link_to polls_path, t("polls.show.back") %>
       <% else %>
@@ -39,13 +39,15 @@
       <%= render SDG::TagListComponent.new(@poll, linkable: false) %>
     </div>
 
-    <aside class="small-12 medium-3 column margin-top">
+    <aside class="small-12 medium-4 column margin-top">
       <%= render "shared/social_share",
         share_title: t("shared.share"),
         title: @poll.name,
         url: poll_url(@poll),
         description: @poll.name,
         mobile: @poll.name %>
+
+      <%= render "custom_video" %>
     </aside>
   </div>
 </div>
