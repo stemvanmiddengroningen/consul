@@ -387,6 +387,13 @@ aside {
   }
 }
 
+.document-link {
+
+  .button {
+    min-height: 0;
+  }
+}
+
 .tabs {
   border-bottom: 4px solid $light;
 
@@ -670,6 +677,10 @@ body > header,
 
 .subnavigation {
 
+  @include breakpoint(small only) {
+    padding: 0 !important;
+  }
+
   .dropdown.menu > li {
 
     &.opens-left > .is-dropdown-submenu {
@@ -709,8 +720,8 @@ body > header,
         top: 20px;
 
         @include breakpoint(small only) {
-          right: -10px;
-          top: 8px;
+          right: -10px !important;
+          top: 8px !important;
         }
       }
     }
@@ -742,6 +753,7 @@ body > header,
     background: #fff;
     min-width: rem-calc(240);
     width: max-content;
+    z-index: 10;
 
     li {
       display: block;
@@ -789,7 +801,7 @@ body > header,
 
 .locale .locale-form {
 
-  @include breakpoint(small-only) {
+  @include breakpoint(small only) {
     padding-left: $line-height / 4;
   }
 }
@@ -1252,6 +1264,28 @@ footer {
   }
 }
 
+.budget-header .budgets-index,
+.budget-group-show,
+.budget-groups-index,
+.budget-ballot-show {
+
+  > header {
+
+    &::before {
+      left: 0;
+      right: 0;
+    }
+  }
+}
+
+.budget-header {
+
+  &::before {
+    left: 0;
+    right: 0;
+  }
+}
+
 .budget-phases {
 
   header {
@@ -1578,6 +1612,8 @@ footer {
 }
 
 .supported .button.button-remove-support {
+  background: none;
+  border: 1px solid $brand;
   box-shadow: none;
   color: $brand-secondary;
 
@@ -1604,6 +1640,16 @@ footer {
   .budget-next-phase::before,
   .budget-next-phase-disabled::before {
     left: 52px;
+  }
+
+  .budget-phase {
+
+    @include breakpoint(medium) {
+
+      > * {
+        word-break: break-word;
+      }
+    }
   }
 }
 
@@ -1645,6 +1691,13 @@ footer {
 
     img {
       height: auto;
+    }
+  }
+
+  .investments-list-item {
+
+    h3 {
+      word-wrap: break-word;
     }
   }
 }
@@ -1758,6 +1811,25 @@ footer {
 
   .legislation-date-title {
     min-height: $line-height * 4;
+  }
+}
+
+a {
+
+  &.legislation-date {
+    display: block;
+
+    &:hover {
+      background: $brand;
+      text-decoration: none;
+
+      h4,
+      p,
+      h4 span,
+      .date-status {
+        color: #fff;
+      }
+    }
   }
 }
 
@@ -2066,7 +2138,7 @@ footer {
 }
 
 .legislation-list .legislation p {
-  word-break: break-all;
+  word-break: break-word;
 }
 
 // 6. Comments
@@ -2207,7 +2279,7 @@ footer {
 
   .in-favor,
   .against {
-    background: $light;
+    background: none;
     display: inline-block;
     margin-left: $line-height / 4;
     text-align: center;
@@ -2584,6 +2656,10 @@ footer {
       }
     }
   }
+
+  .callout .small:not(.button)::after {
+    content: none;
+  }
 }
 
 .supports-container {
@@ -2732,6 +2808,18 @@ footer {
     }
   }
 
+  @include breakpoint(small only) {
+
+    .message {
+      position: unset !important;
+    }
+
+    .table-cell {
+      clear: both;
+      display: block;
+    }
+  }
+
   .question-list {
     font-size: $small-font-size;
 
@@ -2877,12 +2965,6 @@ footer {
     right: 12px;
     top: 0;
   }
-
-  .zoom-link,
-  .orbit-caption,
-  .orbit-controls {
-    display: none;
-  }
 }
 
 // 12. Users
@@ -2939,6 +3021,17 @@ footer {
 
 .verification button {
   min-height: 0;
+}
+
+.subscriptions-edit {
+
+  form {
+    max-width: none;
+  }
+
+  h2 {
+    margin-bottom: $line-height;
+  }
 }
 
 // 13. Custom
@@ -3240,6 +3333,13 @@ footer {
 .budget-phases {
   background: $light;
   padding-bottom: $line-height * 2;
+
+  @include breakpoint(small only) {
+
+    .phases-list {
+      display: none;
+    }
+  }
 
   h2 {
     font-size: $base-font-size;

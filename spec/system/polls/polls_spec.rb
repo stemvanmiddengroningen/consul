@@ -167,20 +167,22 @@ describe "Polls" do
       expect(page).to have_content("You already have participated in this poll")
     end
 
-    scenario "Poll title link to stats if enabled" do
+    scenario "Poll title and button link to stats if enabled" do
       poll = create(:poll, :expired, name: "Poll with stats", stats_enabled: true)
 
       visit polls_path(filter: "expired")
 
       expect(page).to have_link("Poll with stats", href: stats_poll_path(poll.slug))
+      expect(page).to have_link("Poll ended", href: stats_poll_path(poll.slug))
     end
 
-    scenario "Poll title link to results if enabled" do
+    scenario "Poll title and button link to results if enabled" do
       poll = create(:poll, :expired, name: "Poll with results", stats_enabled: true, results_enabled: true)
 
       visit polls_path(filter: "expired")
 
       expect(page).to have_link("Poll with results", href: results_poll_path(poll.slug))
+      expect(page).to have_link("Poll ended", href: results_poll_path(poll.slug))
     end
 
     scenario "Shows SDG tags when feature is enabled" do
@@ -390,7 +392,7 @@ describe "Polls" do
       expect(page).to have_css "#answer_description_#{answer_long.id}.answer-description.short"
     end
 
-    scenario "Show orbit bullets only when there is more than one image" do
+    scenario "Show orbit bullets and controls only when there is more than one image" do
       poll = create(:poll)
       question = create(:poll_question, poll: poll)
       answer1 = create(:poll_question_answer, title: "Answer with one image", question: question)
@@ -402,10 +404,12 @@ describe "Polls" do
       visit poll_path(poll)
 
       within("#answer_#{answer1.id}_gallery") do
+        expect(page).not_to have_css ".orbit-controls"
         expect(page).not_to have_css "nav.orbit-bullets"
       end
 
       within("#answer_#{answer2.id}_gallery") do
+        expect(page).to have_css ".orbit-controls"
         expect(page).to have_css "nav.orbit-bullets"
       end
     end
