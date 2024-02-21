@@ -486,6 +486,11 @@ aside {
   }
 }
 
+.ssb-twitter,
+.ssb-facebook {
+  color: #fff !important;
+}
+
 // 1. Header
 // --------------------
 header,
@@ -2051,6 +2056,10 @@ a {
     border-bottom: 0;
     padding-bottom: 0;
   }
+
+  .comments-box-container {
+    z-index: 1;
+  }
 }
 
 .comments-box-container .comment-meta .comment-votes {
@@ -2129,6 +2138,10 @@ a {
 
   .calc-comments .comment-box {
     overflow: auto;
+  }
+
+  details:not([open]) .draft-panel .panel-title {
+    margin-top: rem-calc(120);
   }
 }
 
