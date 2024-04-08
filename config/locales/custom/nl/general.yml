@@ -288,9 +288,9 @@ nl:
       watch_form_message: "Je hebt niet-opgeslagen wijzigingen. Verlaat de pagina?"
     footer:
       org_name: "CONSUL"
-      contact_title: "Neem contact met ons op"
+      contact_title: "Neem contact op:"
       privacy: "Privacyverklaring"
-      contact_email: "noreply@consul.dev"
+      contact_email: "stemvan@midden-groningen.nl"
       contact: "noreply@consul.dev"
       facebook: "facebook/consul"
       facebook_url: "https://facebook.com/consul"
