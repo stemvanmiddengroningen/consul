@@ -173,7 +173,8 @@ header {
 // ----------
 
 .footer {
-  background: #f0f0f0;
+  background: #fff;
+  border-top: 2px solid #f0f0f0;
 
   .social a {
     color: $brand;
@@ -197,6 +198,31 @@ footer {
 
 .subfooter {
   font-size: $small-font-size;
+}
+
+.footer-contact {
+
+  .footer-contact-icon {
+    background: $brand;
+    border-radius: rem-calc(40);
+    color: #fff;
+    display: inline-block;
+    font-size: rem-calc(24);
+    height: rem-calc(60);
+    padding: $line-height / 2;
+    text-align: center;
+    vertical-align: text-bottom;
+    width: rem-calc(60);
+  }
+
+  .footer-contact-text {
+    display: inline-block;
+    margin-left: $line-height / 2;
+
+    h2 {
+      margin-bottom: 0;
+    }
+  }
 }
 
 // 04. Budgets
