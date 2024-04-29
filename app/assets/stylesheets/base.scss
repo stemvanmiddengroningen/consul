@@ -907,6 +907,7 @@ body > header,
 .home-page .card,
 .custom-page .card {
   margin-top: $line-height;
+  position: relative;
 
   figure {
     border-top-left-radius: rem-calc(12);
@@ -939,6 +940,14 @@ body > header,
       color: $brand;
       text-align: right;
     }
+  }
+
+  h3 {
+    color: #fff;
+    left: $line-height / 2;
+    bottom: 0;
+    position: absolute;
+    z-index: 3;
   }
 
   .figure-card {
