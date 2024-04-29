@@ -495,6 +495,35 @@ aside {
   color: #fff !important;
 }
 
+form {
+
+  select {
+
+    &:focus {
+      border: 2px solid $border-forms;
+    }
+  }
+
+  select,
+  textarea,
+  [type]:not([type="button"],
+  [type=checkbox],
+  [type=file],
+  [type=radio],
+  [type=submit]):not(.close-button),
+  .cke {
+    border: 2px solid $border-forms;
+  }
+}
+
+.subnavigation .input-group-button button {
+  border: 2px solid $border-forms;
+}
+
+::placeholder {
+  color: #595959;
+}
+
 // 1. Header
 // --------------------
 header,
