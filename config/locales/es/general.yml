@@ -952,3 +952,4 @@ es:
   machine_learning:
     comments_summary: "Resumen de comentarios"
     info_text: "Contenido generado mediante IA / Machine Learning"
+  skip_to_content: "Ir al contenido"

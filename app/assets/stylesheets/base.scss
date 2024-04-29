@@ -539,6 +539,29 @@ form {
   color: #595959;
 }
 
+.skip-to-content-link {
+  background: #fff;
+  border: 2px solid $brand;
+  color: $link;
+  left: 0;
+  padding: $line-height;
+  position: absolute;
+  top: 0;
+
+  &:focus {
+    z-index: 999;
+  }
+
+  &:not(:focus) {
+    border: 0 !important;
+    clip: rect(1px, 1px, 1px, 1px) !important;
+    height: 1px !important;
+    overflow: hidden !important;
+    padding: 0 !important;
+    width: 1px !important;
+  }
+}
+
 // 1. Header
 // --------------------
 header,
