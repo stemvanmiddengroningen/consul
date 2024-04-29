@@ -75,6 +75,21 @@ button,
   border-top-right-radius: 0 !important;
 }
 
+p,
+.auth-form {
+
+  a {
+
+    &:not(.button) {
+      text-decoration: underline !important;
+    }
+  }
+
+  .submenu a {
+    text-decoration: none !important;
+  }
+}
+
 main {
 
   .button {
