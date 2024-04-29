@@ -1,6 +1,6 @@
 class Budgets::Investments::MapComponent < ApplicationComponent
   attr_reader :heading, :investments
-  delegate :render_map, to: :helpers
+  use_helpers :render_map
 
   def initialize(investments, heading:)
     @investments = investments
@@ -22,7 +22,7 @@ class Budgets::Investments::MapComponent < ApplicationComponent
     end
 
     def geozones_data
-      return unless heading.geozone.present?
+      return if heading.geozone.blank?
 
       [
         {
