@@ -3779,8 +3779,8 @@ a {
 
   .orbit-bullets button {
     background-color: #ccc;
-    height: $line-height / 2;
-    width: $line-height / 2;
+    height: $line-height;
+    width: $line-height;
 
     &.is-active {
       background-color: $brand;
