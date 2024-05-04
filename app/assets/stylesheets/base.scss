@@ -28,6 +28,10 @@ html {
   font-size: unset;
 }
 
+body {
+  overflow-x: hidden;
+}
+
 body,
 h1,
 h2,
@@ -1705,7 +1709,7 @@ footer {
   .investments-list-item {
 
     h3 {
-      word-wrap: break-word;
+      word-break: break-word;
     }
   }
 }

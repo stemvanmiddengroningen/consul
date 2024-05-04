@@ -67,7 +67,7 @@ describe "Polls" do
       end
     end
 
-    scenario "Displays icon correctly" do
+    scenario "Displays a message asking anonymous users to sign in" do
       create_list(:poll, 3)
       create(:poll, :expired, name: "Expired poll")
 
@@ -75,8 +75,13 @@ describe "Polls" do
 
       expect(page).to have_css(".message .callout .fa-user", count: 3)
       expect(page).to have_content("You must sign in or sign up to participate", count: 3)
+    end
 
+    scenario "Displays a message asking unverified users to verify their account" do
+      create_list(:poll, 3)
+      create(:poll, :expired, name: "Expired poll")
       user = create(:user)
+
       login_as(user)
 
       visit polls_path
@@ -215,13 +220,15 @@ describe "Polls" do
 
       visit poll_path(poll)
 
-      within("#answer_#{answer1.id}_gallery") do
-        expect(page).not_to have_css ".orbit-controls"
+      within("div#answer_#{answer1.id}") do
+        expect(page).not_to have_css ".orbit-previous"
+        expect(page).not_to have_css ".orbit-next"
         expect(page).not_to have_css "nav.orbit-bullets"
       end
 
-      within("#answer_#{answer2.id}_gallery") do
-        expect(page).to have_css ".orbit-controls"
+      within("div#answer_#{answer2.id}") do
+        expect(page).to have_css ".orbit-previous"
+        expect(page).to have_css ".orbit-next"
         expect(page).to have_css "nav.orbit-bullets"
       end
     end

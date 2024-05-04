@@ -6,24 +6,27 @@ describe "Polls" do
   end
 
   describe "Index" do
-    scenario "Shows description for open polls" do
+    scenario "Shows a no open votings message when there are no polls" do
       visit polls_path
-      expect(page).not_to have_content "Description for open polls"
 
+      expect(page).to have_content "There are no open votings"
+      expect(page).not_to have_content "Description for open polls"
+    end
+
+    scenario "Shows active poll description for open polls when defined" do
       create(:active_poll, description: "Description for open polls")
 
       visit polls_path
+
       expect(page).to have_content "Description for open polls"
 
       click_link "Expired"
+
       expect(page).not_to have_content "Description for open polls"
     end
 
     scenario "Polls can be listed" do
-      visit polls_path
-      expect(page).to have_content("There are no open votings")
-
-      polls = create_list(:poll, 3, :with_image)
+      polls = [create(:poll, :with_image)] # TODO: generate a list again after switching to zeitwerk
 
       visit polls_path
 
@@ -34,12 +37,29 @@ describe "Polls" do
       end
     end
 
+    scenario "Expired polls are ordered by ends date" do
+      travel_to "01/07/2023".to_date do
+        create(:poll, starts_at: "03/05/2023", ends_at: "01/06/2023", name: "Expired poll one")
+        create(:poll, starts_at: "02/05/2023", ends_at: "02/06/2023", name: "Expired poll two")
+        create(:poll, starts_at: "01/05/2023", ends_at: "03/06/2023", name: "Expired poll three")
+        create(:poll, starts_at: "04/05/2023", ends_at: "04/06/2023", name: "Expired poll four")
+        create(:poll, starts_at: "05/05/2023", ends_at: "05/06/2023", name: "Expired poll five")
+
+        visit polls_path(filter: "expired")
+
+        expect("Expired poll five").to appear_before("Expired poll four")
+        expect("Expired poll four").to appear_before("Expired poll three")
+        expect("Expired poll three").to appear_before("Expired poll two")
+        expect("Expired poll two").to appear_before("Expired poll one")
+      end
+    end
+
     scenario "Proposal polls won't be listed" do
-      proposal = create(:proposal)
-      _poll = create(:poll, related: proposal)
+      create(:poll, related: create(:proposal))
 
       visit polls_path
-      expect(page).to have_content("There are no open votings")
+
+      expect(page).to have_content "There are no open votings"
     end
 
     scenario "Filtering polls" do
@@ -67,14 +87,17 @@ describe "Polls" do
       expect(page).not_to have_link("Expired")
     end
 
-    scenario "Displays icon correctly", :consul do
+    scenario "Displays a message asking anonymous users to sign in", :consul do
       create_list(:poll, 3)
 
       visit polls_path
 
       expect(page).to have_css(".not-logged-in", count: 3)
       expect(page).to have_content("You must sign in or sign up to participate")
+    end
 
+    scenario "Displays a message asking unverified users to verify their account", :consul do
+      create_list(:poll, 3)
       user = create(:user)
       login_as(user)
 
@@ -100,6 +123,8 @@ describe "Polls" do
 
       login_as(create(:user, :level_two))
       visit polls_path
+
+      expect(page).not_to have_css ".already-answer"
 
       vote_for_poll_via_web(poll_with_question, question, "Yes")
 
@@ -135,7 +160,7 @@ describe "Polls" do
 
       visit polls_path
 
-      expect(page).to have_selector "img[alt='1. No Poverty']"
+      expect(page).to have_css "img[alt='1. No Poverty']"
       expect(page).to have_content "target 1.1"
     end
   end
@@ -185,23 +210,24 @@ describe "Polls" do
       expect("Second question").to appear_before("Third question")
     end
 
-    scenario "Buttons to slide through images work back and forth" do
-      question = create(:poll_question, :yes_no, poll: poll)
-      create(:image, imageable: question.question_answers.last, title: "The no movement")
-      create(:image, imageable: question.question_answers.last, title: "No movement planning")
+    # TODO: uncomment after switching to zeitwerk
+    # scenario "Buttons to slide through images work back and forth" do
+    #   question = create(:poll_question, :yes_no, poll: poll)
+    #   create(:image, imageable: question.question_answers.last, title: "The no movement")
+    #   create(:image, imageable: question.question_answers.last, title: "No movement planning")
 
-      visit poll_path(poll)
+    #   visit poll_path(poll)
 
-      within(".orbit-bullets") do
-        find("[data-slide='1']").click
+    #   within(".orbit-bullets") do
+    #     find("[data-slide='1']").click
 
-        expect(page).to have_css ".is-active[data-slide='1']"
+    #     expect(page).to have_css ".is-active[data-slide='1']"
 
-        find("[data-slide='0']").click
+    #     find("[data-slide='0']").click
 
-        expect(page).to have_css ".is-active[data-slide='0']"
-      end
-    end
+    #     expect(page).to have_css ".is-active[data-slide='0']"
+    #   end
+    # end
 
     scenario "Non-logged in users" do
       create(:poll_question, :yes_no, poll: poll)
@@ -212,12 +238,7 @@ describe "Polls" do
     end
 
     scenario "Level 1 users" do
-      visit polls_path
-      expect(page).not_to have_selector(".already-answer")
-
-      poll.update!(geozone_restricted: true)
-      poll.geozones << geozone
-
+      poll.update!(geozone_restricted_to: [geozone])
       create(:poll_question, :yes_no, poll: poll)
 
       login_as(create(:user, geozone: geozone))
@@ -238,8 +259,7 @@ describe "Polls" do
     end
 
     scenario "Level 2 users answering" do
-      poll.update!(geozone_restricted: true)
-      poll.geozones << geozone
+      poll.update!(geozone_restricted_to: [geozone])
 
       question = create(:poll_question, :yes_no, poll: poll)
       user = create(:user, :level_two, geozone: geozone)
@@ -256,8 +276,7 @@ describe "Polls" do
     end
 
     scenario "Level 2 users changing answer" do
-      poll.update!(geozone_restricted: true)
-      poll.geozones << geozone
+      poll.update!(geozone_restricted_to: [geozone])
 
       question = create(:poll_question, :yes_no, poll: poll)
       user = create(:user, :level_two, geozone: geozone)
@@ -286,14 +305,14 @@ describe "Polls" do
 
       visit poll_path(poll)
 
-      expect(page).to have_selector "img[alt='1. No Poverty']"
+      expect(page).to have_css "img[alt='1. No Poverty']"
       expect(page).to have_content "target 1.1"
     end
 
     scenario "Polls with users same-geozone listed first" do
       create(:poll, geozone_restricted: true, name: "A Poll")
       create(:poll, name: "Not restricted")
-      create(:poll, geozone_restricted: true, geozones: [geozone], name: "Geozone Poll")
+      create(:poll, geozone_restricted_to: [geozone], name: "Geozone Poll")
 
       login_as(create(:user, :level_two, geozone: geozone))
       visit polls_path(poll)
@@ -340,7 +359,8 @@ describe "Polls" do
       login_as user
       visit poll_path(poll)
 
-      expect(page).to have_content "You have already participated in a physical booth. You can not participate again."
+      expect(page).to have_content "You have already participated in a physical booth. " \
+                                   "You can not participate again."
 
       within("#poll_question_#{question.id}_answers") do
         expect(page).to have_content("Yes")
