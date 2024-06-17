@@ -1,5 +1,6 @@
 nl:
   mailers:
+    sincerely: "Met vriendelijke groet"
     budget_investment_created:
       subject: "Bedankt voor het delen van je idee!"
       title: "Bedankt voor het delen van je idee!"
@@ -7,7 +8,6 @@ nl:
       text: "Bedankt voor het delen van je idee <strong>%{investment}</strong> <strong>%{budget}</strong>."
       follow: "We houden je op de hoogte van het proces. Je kunt dit ook volgen op <strong>%{link}</strong>."
       follow_link: "Ideeën"
-      sincerely: ""
       share: "Deel"
     config:
       manage_email_subscriptions: "Wil je dit soort mails niet meer ontvangen? Verander dan hier je instellingen"
@@ -17,7 +17,6 @@ nl:
       hi: "Beste <strong>%{author}</strong>,"
       share: "De Coöperatieve Wijkraad heeft alle ingediende ideeën bekeken, en gekeken hoeveel het ongeveer gaat kosten. Gefeliciteerd, jouw idee voor de Oosterparkwijk is haalbaar! Je kunt nu beginnen met je campagne. Deel je idee op social media en met je buren.<br>Veel succes!"
       share_button: "Deel je idee"
-      sincerely: "Groeten van de Coöperatieve Wijkraad"
       thanks: "Bedankt voor het meedoen."
     budget_investment_unfeasible:
       subject: "Helaas, je idee is onhaalbaar"
@@ -26,12 +25,10 @@ nl:
       new_href: "dat kan hier"
       contact: "Heb je vragen of wil je hulp bij je idee? Mail dan naar %{email}, we denken graag met je mee."
       email: "noreply@consul.dev"
-      sincerely: "Groeten van de Coöperatieve Wijkraad"
     budget_investment_unselected:
       subject: "Helaas heeft je idee het niet gehaald"
       hi: "Beste <strong>%{author}</strong>,"
       thanks: "Helaas heeft je idee niet genoeg stemmen gekregen om door te gaan. Heel erg bedankt voor het delen van je idee."
-      sincerely: "Groeten van de Coöperatieve Wijkraad"
     comment:
       subject: "Iemand heeft gereageerd op je idee %{commentable}"
       title: "Iemand heeft gereageerd op je idee"
