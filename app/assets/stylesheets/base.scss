@@ -510,6 +510,20 @@ aside {
   color: #fff !important;
 }
 
+.ssb-twitter {
+  @include has-fa-icon(twitter-x, brands);
+  background: #000;
+}
+
+.social-share-button .ssb-icon {
+
+  &:hover,
+  &:focus {
+    background: #ececec;
+    color: #000 !important;
+  }
+}
+
 form {
 
   select {
