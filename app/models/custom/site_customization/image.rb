@@ -1,4 +1,4 @@
-require_dependency Rails.root.join("app", "models", "site_customization", "image").to_s
+load Rails.root.join("app", "models", "site_customization", "image.rb")
 
 class SiteCustomization::Image
   VALID_IMAGES = {
