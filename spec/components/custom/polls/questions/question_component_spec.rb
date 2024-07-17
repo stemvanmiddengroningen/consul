@@ -1,7 +1,7 @@
 require "rails_helper"
 
 describe Polls::Questions::QuestionComponent do
-  it "renders more information links when any question answer has additional information" do
+  it "renders more information links when any question option has additional information" do
     question = create(:poll_question)
     questions = [question]
     index = 0
