@@ -162,9 +162,9 @@ describe "Debates" do
       medium_debate.update_column(:confidence_score, 5)
 
       visit debates_path
-      click_link "Highest rated"
+      click_link "highest rated"
 
-      expect(page).to have_selector("a.is-active", text: "Highest rated")
+      expect(page).to have_css("a.is-active", text: "highest rated")
 
       within "#debates" do
         expect(best_debate.title).to appear_before(medium_debate.title)
@@ -181,9 +181,9 @@ describe "Debates" do
       worst_debate = create(:debate, title: "Worst", created_at: 1.day.ago)
 
       visit debates_path
-      click_link "Newest"
+      click_link "newest"
 
-      expect(page).to have_selector("a.is-active", text: "Newest")
+      expect(page).to have_css("a.is-active", text: "newest")
 
       within "#debates" do
         expect(best_debate.title).to appear_before(medium_debate.title)
@@ -206,7 +206,7 @@ describe "Debates" do
         login_as(user)
         visit debates_path
 
-        click_link "Recommendations"
+        click_link "recommendations"
 
         expect(page).to have_content "There are no debates related to your interests"
       end
@@ -217,7 +217,7 @@ describe "Debates" do
         login_as(user)
         visit debates_path
 
-        click_link "Recommendations"
+        click_link "recommendations"
 
         expect(page).to have_content "Follow proposals so we can give you recommendations"
       end
@@ -229,9 +229,9 @@ describe "Debates" do
         login_as(user)
         visit debates_path
 
-        click_link "Recommendations"
+        click_link "recommendations"
 
-        expect(page).to have_selector("a.is-active", text: "Recommendations")
+        expect(page).to have_css("a.is-active", text: "recommendations")
 
         within "#debates" do
           expect(best_debate.title).to appear_before(medium_debate.title)
@@ -254,7 +254,7 @@ describe "Debates" do
       fill_in "search", with: "Show you got"
       click_button "Search"
 
-      expect(page).to have_selector("a.is-active", text: "Relevance")
+      expect(page).to have_css("a.is-active", text: "relevance")
 
       within("#debates") do
         expect(all(".debate")[0].text).to match "Show you got"
@@ -272,8 +272,8 @@ describe "Debates" do
       visit debates_path
       fill_in "search", with: "Show you got"
       click_button "Search"
-      click_link "Newest"
-      expect(page).to have_selector("a.is-active", text: "Newest")
+      click_link "newest"
+      expect(page).to have_css("a.is-active", text: "newest")
 
       within("#debates") do
         expect(all(".debate")[0].text).to match "Show you got"
@@ -296,8 +296,8 @@ describe "Debates" do
       visit debates_path
       fill_in "search", with: "Show you got"
       click_button "Search"
-      click_link "Recommendations"
-      expect(page).to have_selector("a.is-active", text: "Recommendations")
+      click_link "recommendations"
+      expect(page).to have_css("a.is-active", text: "recommendations")
 
       within("#debates") do
         expect(all(".debate")[0].text).to match "Show you got"
@@ -381,7 +381,7 @@ describe "Debates" do
     expect(page).to have_current_path(debates_path)
     expect(debate.reload.featured?).to be false
 
-    expect(page).not_to have_selector("#featured-debates")
+    expect(page).not_to have_css("#featured-debates")
   end
 
   describe "SDG related list" do

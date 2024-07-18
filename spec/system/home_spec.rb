@@ -143,7 +143,7 @@ describe "Home" do
     expect(page).not_to have_css(".title", text: "Featured")
   end
 
-  scenario "cards are first sorted by 'order' field, then by 'created_at' when order is equal" do
+  scenario "cards are first sorted by 'order' field, then by 'created_at' when order is equal", :consul do
     create(:widget_card, title: "Card one", order: 1)
     create(:widget_card, title: "Card two", order: 3)
     create(:widget_card, title: "Card three", order: 2)

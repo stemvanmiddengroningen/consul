@@ -59,8 +59,8 @@ class Poll::Question < ApplicationRecord
   end
 
   def answers_with_content
-    question_answers.select do |answer|
-      answer.description.present? || answer.images.any? || answer.documents.any? || answer.videos.any?
+    question_options.select do |option|
+      option.description.present? || option.images.any? || option.documents.any? || option.videos.any?
     end
   end
 

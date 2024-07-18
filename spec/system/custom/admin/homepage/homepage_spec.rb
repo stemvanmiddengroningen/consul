@@ -29,7 +29,7 @@ describe "Homepage", :admin do
       visit root_path
 
       within("#feed_proposals") do
-        expect(page).to have_content "Featured proposals"
+        expect(page).to have_content "Most active proposals"
         expect(page).to have_css(".proposal", count: 1)
       end
 
@@ -59,7 +59,7 @@ describe "Homepage", :admin do
       visit root_path
 
       within("#feed_proposals") do
-        expect(page).to have_content "Featured proposals"
+        expect(page).to have_content "Most active proposals"
         expect(page).to have_css(".proposal", count: 3)
       end
 
