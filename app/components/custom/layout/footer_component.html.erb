@@ -22,7 +22,7 @@
         <li><%= link_to t("layouts.footer.privacy"), page_path("privacy") %></li>
         <li><%= link_to t("layouts.footer.conditions"), page_path("conditions") %></li>
         <li><%= link_to t("layouts.footer.accessibility"), page_path("accessibility") %></li>
-        <%= raw footer_legal_content_block %>
+        <%== footer_legal_content_block %>
       </ul>
     </div>
 
@@ -33,8 +33,8 @@
     <div class="small-12 column">
       <p class="info">
         <%= sanitize(t("layouts.footer.description",
-            open_source: link_to(t("layouts.footer.open_source"), t("layouts.footer.open_source_url"), target: "blank", rel: "nofollow"),
-            consul:  link_to(t("layouts.footer.consul"), t("layouts.footer.consul_url"), target: "blank", rel: "nofollow"))) %>
+                       open_source: link_to(t("layouts.footer.open_source"), t("layouts.footer.open_source_url"), target: "blank", rel: "nofollow"),
+                       consul: link_to(t("layouts.footer.consul"), t("layouts.footer.consul_url"), target: "blank", rel: "nofollow"))) %>
       </p>
     </div>
   </div>

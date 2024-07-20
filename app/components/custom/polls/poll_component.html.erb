@@ -31,8 +31,7 @@
           <%= link_to_poll t("polls.index.participate_button_expired"), poll, class: "button hollow expanded" %>
         <% else %>
           <p class="small text-right">
-            <%= sanitize(t("polls.index.remaining",
-                         days: distance_of_time_in_words(Time.current, poll.ends_at))) %>
+            <%= sanitize(t("polls.index.remaining", days: distance_of_time_in_words(Time.current, poll.ends_at))) %>
           </p>
           <%= link_to_poll t("polls.index.participate_button"), poll, class: "button hollow expanded" %>
         <% end %>
