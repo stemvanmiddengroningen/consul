@@ -37,7 +37,8 @@ class UserSegments
   end
 
   def self.investment_followers
-    author_ids(Follow.where(followable_type: "Budget::Investment", followable_id: current_budget_investments).pluck(:user_id))
+    author_ids(Follow.where(followable_type: "Budget::Investment",
+                            followable_id: current_budget_investments).pluck(:user_id))
   end
 
   def self.feasible_and_undecided_investment_authors

@@ -125,9 +125,13 @@ describe "Polls" do
 
     scenario "Read more button appears only in long answer descriptions" do
       question = create(:poll_question, poll: poll)
-      option_long = create(:poll_question_option, title: "Long answer", question: question,
+      option_long = create(:poll_question_option,
+                           title: "Long answer",
+                           question: question,
                            description: Faker::Lorem.characters(number: 700))
-      create(:poll_question_option, title: "Short answer", question: question,
+      create(:poll_question_option,
+             title: "Short answer",
+             question: question,
              description: Faker::Lorem.characters(number: 100))
 
       visit poll_path(poll)
