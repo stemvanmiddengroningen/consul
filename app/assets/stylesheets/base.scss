@@ -493,6 +493,7 @@ aside {
   position: fixed;
   right: 24px;
   width: rem-calc(48);
+  z-index: 1;
 
   a {
     color: $text;
@@ -1192,13 +1193,6 @@ body > header,
   position: absolute;
   right: 0;
   top: 0;
-}
-
-.figure-card {
-
-  &.legislation-process img {
-    min-height: rem-calc(185);
-  }
 }
 
 // 3. Footer
