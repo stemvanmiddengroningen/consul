@@ -294,6 +294,7 @@ nl:
       contact: "noreply@consul.dev"
       facebook: "facebook/consul"
       facebook_url: "https://facebook.com/consul"
+      copyright: "CONSUL DEMOCRACY"
     dashboard:
       proposal_header:
         published: "Gepubliceerd"
