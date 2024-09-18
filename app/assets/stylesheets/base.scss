@@ -2868,8 +2868,13 @@ a {
 .fixed-mobile-content {
   top: 0 !important;
 
+  @include breakpoint(medium down) {
+    margin-top: $line-height;
+    padding-top: 0;
+  }
+
   &.is-stuck {
-    top: auto !important;
+    top: $line-height * 5 !important;
   }
 }
 
