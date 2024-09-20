@@ -8,8 +8,6 @@ nl:
     shared:
       sign_in: "Inloggen bestaand account"
       sign_up: "Aanmelden nieuw account"
-      not_organization: "Vertegenwoordig je geen organisatie of collectief? Meld je dan %{link} aan."
-      not_organization_link: "hier"
       links:
         new_confirmation: "Geen activeringsinstructies voor je account ontvangen?"
         login: "Inloggen"
